@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Second Hand Book Store - Forgot Password</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400;700&family=Lora:ital@0;1&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Lora', serif;
+      margin: 0;
+      min-height: 100vh;
+      overflow-x: hidden;
+      perspective: 2000px;
+      background: #000;
+    }
+
+    .magical-universe {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      transform-style: preserve-3d;
+    }
+
+    .stars {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      transform-style: preserve-3d;
+      animation: starRotate 100s infinite linear;
+    }
+
+    .star {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: white;
+      border-radius: 50%;
+      animation: twinkle 3s infinite;
+    }
+
+    .floating-books-3d {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      transform-style: preserve-3d;
+    }
+
+    .book-3d {
+      position: absolute;
+      transform-style: preserve-3d;
+      animation: bookFloat 15s infinite ease-in-out;
+    }
+
+    .book-cover {
+      position: absolute;
+      width: 60px;
+      height: 90px;
+      background: linear-gradient(45deg, #FFD700, #FFA500);
+      border-radius: 5px;
+      box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+      transform-origin: center;
+      backface-visibility: hidden;
+    }
+
+    .book-pages {
+      position: absolute;
+      width: 58px;
+      height: 88px;
+      background: #fff;
+      border-radius: 3px;
+      transform: translateZ(-10px);
+    }
+
+    .magical-particles {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
+
+    .particle {
+      position: absolute;
+      background: radial-gradient(circle, #fff, transparent);
+      border-radius: 50%;
+      animation: particleMagic 8s infinite;
+    }
+
+    .portal {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      width: 300vmax;
+      height: 300vmax;
+      margin: -150vmax 0 0 -150vmax;
+      background: radial-gradient(circle at center,
+        rgba(138, 43, 226, 0.2) 0%,
+        rgba(75, 0, 130, 0.4) 25%,
+        rgba(106, 90, 205, 0.6) 50%,
+        rgba(147, 112, 219, 0.4) 75%,
+        rgba(230, 230, 250, 0.2) 100%
+      );
+      transform-style: preserve-3d;
+      animation: portalPulse 10s infinite ease-in-out;
+    }
+
+    .content-wrapper {
+      position: relative;
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(20px);
+      border-radius: 20px;
+      box-shadow: 
+        0 0 30px rgba(138, 43, 226, 0.3),
+        0 0 60px rgba(75, 0, 130, 0.2),
+        inset 0 0 15px rgba(255, 255, 255, 0.8);
+      padding: 2.5rem;
+      animation: contentGlow 3s infinite alternate;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .form-input {
+      appearance: none;
+      rounded-md: true;
+      position: relative;
+      display: block;
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid #D1D5DB;
+      border-radius: 0.375rem;
+      color: #111827;
+      placeholder-color: #6B7280;
+    }
+
+    .form-input:focus {
+      outline: none;
+      ring-color: #3B82F6;
+      border-color: #3B82F6;
+      z-index: 10;
+    }
+
+    .submit-button {
+      position: relative;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      padding: 0.5rem 1rem;
+      border: 1px solid transparent;
+      font-size: 0.875rem;
+      font-weight: 500;
+      border-radius: 0.375rem;
+      color: white;
+      background-color: #2563EB;
+    }
+
+    .submit-button:hover {
+      background-color: #1D4ED8;
+    }
+
+    .submit-button:focus {
+      outline: none;
+      ring-width: 2px;
+      ring-offset-width: 2px;
+      ring-color: #3B82F6;
+    }
+
+    .back-link {
+      font-weight: 500;
+      color: #2563EB;
+    }
+
+    .back-link:hover {
+      color: #1D4ED8;
+    }
+
+    .min-h-screen {
+      min-height: 100vh;
+    }
+
+    .flex {
+      display: flex;
+    }
+
+    .items-center {
+      align-items: center;
+    }
+
+    .justify-center {
+      justify-content: center;
+    }
+
+    .py-12 {
+      padding-top: 3rem;
+      padding-bottom: 3rem;
+    }
+
+    .px-4 {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+
+    .sm\:px-6 {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+
+    .lg\:px-8 {
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+
+    .max-w-md {
+      max-width: 28rem;
+    }
+
+    .w-full {
+      width: 100%;
+    }
+
+    .mx-auto {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .h-16 {
+      height: 4rem;
+    }
+
+    .w-auto {
+      width: auto;
+    }
+
+    .mt-6 {
+      margin-top: 1.5rem;
+    }
+
+    .text-center {
+      text-align: center;
+    }
+
+    .text-3xl {
+      font-size: 1.875rem;
+      line-height: 2.25rem;
+    }
+
+    .font-extrabold {
+      font-weight: 800;
+    }
+
+    .text-gray-900 {
+      color: #111827;
+    }
+
+    .mt-2 {
+      margin-top: 0.5rem;
+    }
+
+    .text-sm {
+      font-size: 0.875rem;
+      line-height: 1.25rem;
+    }
+
+    .text-gray-600 {
+      color: #4B5563;
+    }
+
+    .mt-8 {
+      margin-top: 2rem;
+    }
+
+    .space-y-6 > * + * {
+      margin-top: 1.5rem;
+    }
+
+    .rounded-md {
+      border-radius: 0.375rem;
+    }
+
+    .shadow-sm {
+      box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border-width: 0;
+    }
+
+    .absolute {
+      position: absolute;
+    }
+
+    .left-0 {
+      left: 0;
+    }
+
+    .inset-y-0 {
+      top: 0;
+      bottom: 0;
+    }
+
+    .pl-3 {
+      padding-left: 0.75rem;
+    }
+
+    .h-5 {
+      height: 1.25rem;
+    }
+
+    .w-5 {
+      width: 1.25rem;
+    }
+
+    .text-blue-500 {
+      color: #3B82F6;
+    }
+
+    .group-hover\:text-blue-400:hover {
+      color: #60A5FA;
+    }
+
+    @keyframes starRotate {
+      0% { transform: rotateX(0deg) rotateY(0deg); }
+      100% { transform: rotateX(360deg) rotateY(360deg); }
+    }
+
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.2; }
+      50% { opacity: 1; }
+    }
+
+    @keyframes bookFloat {
+      0%, 100% { 
+        transform: translateZ(-50px) rotateY(0deg) translateY(0px);
+      }
+      50% { 
+        transform: translateZ(50px) rotateY(180deg) translateY(-30px);
+      }
+    }
+
+    @keyframes particleMagic {
+      0% {
+        transform: translate3d(0, 0, 0) scale(1);
+        opacity: 0;
+      }
+      50% {
+        opacity: 0.8;
+      }
+      100% {
+        transform: translate3d(100px, -100px, 100px) scale(0);
+        opacity: 0;
+      }
+    }
+
+    @keyframes portalPulse {
+      0%, 100% {
+        transform: scale3d(0.95, 0.95, 0.95) rotate3d(0, 1, 0, 0deg);
+      }
+      50% {
+        transform: scale3d(1.05, 1.05, 1.05) rotate3d(0, 1, 0, 180deg);
+      }
+    }
+
+    @keyframes contentGlow {
+      0% {
+        box-shadow: 
+          0 0 30px rgba(138, 43, 226, 0.3),
+          0 0 60px rgba(75, 0, 130, 0.2),
+          inset 0 0 15px rgba(255, 255, 255, 0.8);
+      }
+      100% {
+        box-shadow: 
+          0 0 40px rgba(138, 43, 226, 0.5),
+          0 0 80px rgba(75, 0, 130, 0.4),
+          inset 0 0 25px rgba(255, 255, 255, 0.9);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .content-wrapper {
+        margin: 1rem;
+        padding: 1.5rem;
+      }
+      
+      .book-3d {
+        transform: scale(0.7);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="magical-universe">
+    <div class="portal"></div>
+    <div class="stars">
+      <!-- Dynamically generated stars via JavaScript -->
+    </div>
+    <div class="floating-books-3d">
+      <!-- Dynamically generated 3D books via JavaScript -->
+    </div>
+    <div class="magical-particles">
+      <!-- Dynamically generated particles via JavaScript -->
+    </div>
+  </div>
+
+  <div class="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-md w-full content-wrapper">
+      <div>
+        <img class="mx-auto h-16 w-auto" src="/api/placeholder/150/50" alt="Second Hand Book Store">
+        <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
+          Forgot Your Password?
+        </h2>
+        <p class="mt-2 text-center text-sm text-gray-600">
+          Don't worry! Enter your email and we'll send you a reset link.
+        </p>
+      </div>
+      <form class="mt-8 space-y-6" action="#" method="POST">
+        <div class="rounded-md shadow-sm">
+          <div>
+            <label for="email-address" class="sr-only">Email address</label>
+            <input id="email-address" name="email" type="email" autocomplete="email" required class="form-input" placeholder="Email address">
+          </div>
+        </div>
+
+        <div>
+          <button type="submit" class="submit-button">
+            <span class="absolute left-0 inset-y-0 flex items-center pl-3">
+              <svg class="h-5 w-5 text-blue-500 group-hover:text-blue-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd" />
+              </svg>
+            </span>
+            Send Reset Link
+          </button>
+        </div>
+
+        <div class="text-center">
+          <a href="login.html" class="back-link">
+            Back to Sign In
+          </a>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    // Generate stars
+    const stars = document.querySelector('.stars');
+    for(let i = 0; i < 200; i++) {
+      const star = document.createElement('div');
+      star.className = 'star';
+      star.style.left = `${Math.random() * 100}%`;
+      star.style.top = `${Math.random() * 100}%`;
+      star.style.animationDelay = `${Math.random() * 3}s`;
+      star.style.transform = `translateZ(${Math.random() * 1000 - 500}px)`;
+      stars.appendChild(star);
+    }
+
+    // Generate 3D books
+    const booksContainer = document.querySelector('.floating-books-3d');
+    for(let i = 0; i < 10; i++) {
+      const book = document.createElement('div');
+      book.className = 'book-3d';
+      book.style.left = `${Math.random() * 100}%`;
+      book.style.top = `${Math.random() * 100}%`;
+      book.style.animationDelay = `${Math.random() * 5}s`;
+      
+      const cover = document.createElement('div');
+      cover.className = 'book-cover';
+      const pages = document.createElement('div');
+      pages.className = 'book-pages';
+      
+      book.appendChild(cover);
+      book.appendChild(pages);
+      booksContainer.appendChild(book);
+    }
+
+    // Generate magical particles
+    const particles = document.querySelector('.magical-particles');
+    for(let i = 0; i < 50; i++) {
+      const particle = document.createElement('div');
+      particle.className = 'particle';
+      particle.style.left = `${Math.random() * 100}%`;
+      particle.style.top = `${Math.random() * 100}%`;
+      particle.style.width = particle.style.height = `${Math.random() * 5 + 2}px`;
+      particle.style.animationDelay = `${Math.random() * 8}s`;
+      particles.appendChild(particle);
+    }
+  </script>
+</body>
+</html>
