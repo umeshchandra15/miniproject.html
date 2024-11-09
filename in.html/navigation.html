@@ -319,15 +319,49 @@
     </header>
 
     <div class="categories-bar">
-        <div class="categories-container">
-            <a href="#" class="category-item">Mystical Fiction</a>
-            <a href="#" class="category-item">Ancient Wisdom</a>
-            <a href="#" class="category-item">Spell Books</a>
-            <a href="#" class="category-item">Magical History</a>
-            <a href="#" class="category-item">Enchanted Tales</a>
-            <a href="#" class="category-item">Potion Guides</a>
+        <div class="categories-container" id="categoriesContainer">
+            <!-- Categories will be populated dynamically -->
         </div>
     </div>
+    <script>
+        // Categories data
+        const categories = [
+            {
+                name: "Mystical Fiction",
+                link: "#"
+            },
+            {
+                name: "Ancient Wisdom", 
+                link: "#"
+            },
+            {
+                name: "Spell Books",
+                link: "#"
+            },
+            {
+                name: "Magical History",
+                link: "#"
+            },
+            {
+                name: "Enchanted Tales",
+                link: "#"
+            },
+            {
+                name: "Potion Guides",
+                link: "#"
+            }
+        ];
+
+        // Populate categories
+        const categoriesContainer = document.getElementById('categoriesContainer');
+        categories.forEach(category => {
+            const categoryLink = document.createElement('a');
+            categoryLink.href = category.link;
+            categoryLink.className = 'category-item';
+            categoryLink.textContent = category.name;
+            categoriesContainer.appendChild(categoryLink);
+        });
+    </script>
 
     <section class="products-section">
         <div class="products-grid" id="productsGrid"></div>
