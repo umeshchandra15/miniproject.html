@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Second Hand Book Store - Register</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400;700&family=Lora:ital@0;1&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="magical-universe">
+    <div class="portal"></div>
+    <div class="stars">
+      <!-- Dynamically generated stars via JavaScript -->
+    </div>
+    <div class="floating-books-3d">
+      <!-- Dynamically generated 3D books via JavaScript -->
+    </div>
+    <div class="magical-particles">
+      <!-- Dynamically generated particles via JavaScript -->
+    </div>
+  </div>
+
+  <div class="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-md w-full content-wrapper">
+      <div>
+        <img class="mx-auto h-16 w-auto" src="/api/placeholder/150/50" alt="Second Hand Book Store">
+        <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
+          Create Your Account
+        </h2>
+        <p class="mt-2 text-center text-sm text-gray-600">
+          Already have an account?
+          <a href="login.html" class="font-medium text-blue-600 hover:text-blue-500">
+            Sign in here
+          </a>
+        </p>
+      </div>
+      <form class="mt-8 space-y-6" action="#" method="POST">
+        <input type="hidden" name="remember" value="true">
+        <div class="rounded-md shadow-sm -space-y-px">
+          <div>
+            <label for="full-name" class="sr-only">Full Name</label>
+            <input id="full-name" name="fullName" type="text" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm" placeholder="Full Name">
+          </div>
+          <div>
+            <label for="email-address" class="sr-only">Email address</label>
+            <input id="email-address" name="email" type="email" autocomplete="email" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm" placeholder="Email address">
+          </div>
+          <div>
+            <label for="password" class="sr-only">Password</label>
+            <input id="password" name="password" type="password" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm" placeholder="Password">
+          </div>
+          
+          <div>
+            <label for="confirm-password" class="sr-only">Confirm Password</label>
+            <input id="confirm-password" name="confirmPassword" type="password" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm" placeholder="Confirm Password">
+          </div>
+        </div>
+
+        <div class="flex items-center">
+          <input id="terms" name="terms" type="checkbox" required class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
+          <label for="terms" class="ml-2 block text-sm text-gray-900">
+            I agree to the <a href="#" class="text-blue-600 hover:text-blue-500">Terms and Conditions</a>
+          </label>
+        </div>
+
+        <div>
+          <button type="submit" class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+            <span class="absolute left-0 inset-y-0 flex items-center pl-3">
+              <svg class="h-5 w-5 text-blue-500 group-hover:text-blue-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd" />
+              </svg>
+            </span>
+            Start Your Reading Journey
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    // Generate stars
+    const stars = document.querySelector('.stars');
+    for(let i = 0; i < 200; i++) {
+      const star = document.createElement('div');
+      star.className = 'star';
+      star.style.left = `${Math.random() * 100}%`;
+      star.style.top = `${Math.random() * 100}%`;
+      star.style.animationDelay = `${Math.random() * 3}s`;
+      star.style.transform = `translateZ(${Math.random() * 1000 - 500}px)`;
+      stars.appendChild(star);
+    }
+
+    // Generate 3D books
+    const booksContainer = document.querySelector('.floating-books-3d');
+    for(let i = 0; i < 10; i++) {
+      const book = document.createElement('div');
+      book.className = 'book-3d';
+      book.style.left = `${Math.random() * 100}%`;
+      book.style.top = `${Math.random() * 100}%`;
+      book.style.animationDelay = `${Math.random() * 5}s`;
+      
+      const cover = document.createElement('div');
+      cover.className = 'book-cover';
+      const pages = document.createElement('div');
+      pages.className = 'book-pages';
+      
+      book.appendChild(cover);
+      book.appendChild(pages);
+      booksContainer.appendChild(book);
+    }
+
+    // Generate magical particles
+    const particles = document.querySelector('.magical-particles');
+    for(let i = 0; i < 50; i++) {
+      const particle = document.createElement('div');
+      particle.className = 'particle';
+      particle.style.left = `${Math.random() * 100}%`;
+      particle.style.top = `${Math.random() * 100}%`;
+      particle.style.width = particle.style.height = `${Math.random() * 5 + 2}px`;
+      particle.style.animationDelay = `${Math.random() * 8}s`;
+      particles.appendChild(particle);
+    }
+  </script>
+</body>
+</html>
